@@ -1,0 +1,26 @@
+def main():
+    print("hello world")
+
+if __name__ == "__main__":
+    main()
+--------------------------------------------------
+import asyncio
+async def main():
+    print("hello world")
+
+def test():
+    print("안녕")
+
+if __name__ == "__main__":
+    test()
+    print(type(main()))
+
+------------------------------------------------------
+
+
+import asyncio
+async def main():
+    print("hello world")
+
+if __name__ == "__main__":
+    asyncio.run(main())
