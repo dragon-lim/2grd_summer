@@ -1,2 +1,45 @@
 # 동기 비동기의 코드를 보고 분석할 수 있어야 한다
 # 동기 비동기의 개념을 정확하게 이해해야한다
+
+import time
+import asyncio
+
+# 비동기 함수 정의
+async def make_order(menu:str, taken_time:int)->str:
+    print(f"{menu} 준비중")
+    await asyncio.sleep(taken_time)
+    # time.sleep(taken_time)
+    return print(f"{menu} 준비완료")
+    
+# 비동기 함수 정의
+async def main():
+    start = time.time()
+    # print(make_order("라떼", 3))
+    # print(make_order("아아", 2))
+    # print(make_order("우유", 1))
+
+    result1 =  asyncio.create_task(make_order("라떼", 3))
+    result2 =  asyncio.create_task(make_order("아아", 2))
+    result3 =  asyncio.create_task(make_order("우유", 1))
+
+    # task 객체 생성
+    print(result1, result2, result3)
+    elasped_time = time.time() - start
+
+    print(f"경과 시간: {elasped_time}")
+
+if __name__ == "__main__":
+    asyncio.run(main()) #이벤트 루프 생성
+
+
+# print(__name__) # __main__
+# 실행파일 , 메인 인지에 따라 다르게 나옴
+# 모듈로 땡겨쓰면 다른 결과
+# 모듈로 테스트 가능, 독립적으로 실행되는지 안되는지 __name__ 으로 출력가능
+# 독립적으로 실행 파일이면 __main__
+# 클로드 등 ai 코드는 이런식으로 구현 많이함
+# 모듈 사용을 땡겨오기 때문에!
+
+# 파이썬 내부적으로 사용하는 멤버 (객체화 하는 멤버변수) - 2학기 자료구조
+# 2학기 3가지 캡스톤, ml -> 파이토치, (자료구조) 파이썬 OOP, static 하게 타입 채킹
+# 검증하기 위한 라이브러리 past api 백엔드 라이트하게 make
